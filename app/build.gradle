@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
@@ -38,7 +37,8 @@ dependencies {
 
     def hiltVersion = '2.40.2'
     def coroutinesVersion = '1.5.0'
-    def retrofit_version = '2.9.0'
+    def retrofitVersion = '2.9.0'
+    def lifeCycleVersion = '2.4.1'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -56,17 +56,28 @@ dependencies {
     // GSON
     implementation 'com.google.code.gson:gson:2.9.0'
     // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
     //MockWebserver
     testImplementation('com.squareup.okhttp3:mockwebserver:4.9.1')
     // Needed for unit testing API
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
+
+    //Mockito
+    testImplementation "io.mockk:mockk:1.12.1"
+
+    // Android JetpackCompose
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.4.0'
 
 }

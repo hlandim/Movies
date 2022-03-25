@@ -1,16 +1,16 @@
 package com.hlandim.movies.data
 
-import com.hlandim.movies.util.NetworkResult
+import com.hlandim.movies.util.RepositoryResult
 import retrofit2.Response
 
 abstract class BaseApiResponse {
-    suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): NetworkResult<T> {
+    suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): RepositoryResult<T> {
         try {
             val response = apiCall()
             if (response.isSuccessful) {
                 val body = response.body()
                 body?.let {
-                    return NetworkResult.Success(body)
+                    return RepositoryResult.Success(body)
                 }
             }
             return error("${response.code()} ${response.message()}")
@@ -19,6 +19,6 @@ abstract class BaseApiResponse {
         }
     }
 
-    private fun <T> error(errorMessage: String): NetworkResult<T> =
-        NetworkResult.Error("Api call failed: $errorMessage")
+    private fun <T> error(errorMessage: String): RepositoryResult<T> =
+        RepositoryResult.Error("Api call failed: $errorMessage")
 }

@@ -1,10 +1,10 @@
 package com.hlandim.movies.data
 
-import com.hlandim.movies.data.remote.themoviedb.MoviesResponse
-import com.hlandim.movies.util.NetworkResult
+import com.hlandim.movies.model.MoviesResponse
+import com.hlandim.movies.util.RepositoryResult
 
 interface Repository {
 
-    suspend fun getMovies(): NetworkResult<MoviesResponse>
+    suspend fun getMovies(): RepositoryResult<MoviesResponse>
 
 }
