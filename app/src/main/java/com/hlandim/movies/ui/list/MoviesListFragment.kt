@@ -8,6 +8,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.hlandim.movies.viewmodel.MoviesViewModel
 
 
@@ -24,15 +25,10 @@ class MoviesListFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 MoviesListScreen(moviesViewModel) {
-
+                    val action = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailsFragment(it.id)
+                    findNavController().navigate(action)
                 }
             }
         }
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        moviesViewModel.fetchMovies()
     }
 }

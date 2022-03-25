@@ -23,6 +23,10 @@ class MoviesViewModel @Inject constructor(
     private val _response: MutableLiveData<RepositoryResult<MoviesResponse>> = MutableLiveData()
     val response: LiveData<RepositoryResult<MoviesResponse>> = _response
 
+    init {
+        fetchMovies()
+    }
+
     fun fetchMovies() {
         _response.value = RepositoryResult.Loading()
         viewModelScope.launch(dispatcher) {

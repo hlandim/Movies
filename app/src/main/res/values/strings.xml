@@ -3,4 +3,6 @@
     <string name="general_error_msg">Something is not right :/</string>
     <string name="loading_msg">Fetching the movies..</string>
     <string name="no_movies_found">No movies found</string>
+    <string name="popularity_label">Popularity: %1s</string>
+    <string name="release_year_label">Release Year: %1s</string>
 </resources>
