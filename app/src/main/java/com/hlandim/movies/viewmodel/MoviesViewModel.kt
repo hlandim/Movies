@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.hlandim.movies.data.Repository
-import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.data.RepositoryResult
+import com.hlandim.movies.model.MoviesResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,7 +24,7 @@ class MoviesViewModel @Inject constructor(
     val response: LiveData<RepositoryResult<MoviesResponse>> = _response
 
     fun fetchMovies() {
-//        _response.value = RepositoryResult.Loading()
+        _response.value = RepositoryResult.Loading()
         viewModelScope.launch(dispatcher) {
             val movies = repository.getMovies()
             _response.postValue(movies)

@@ -1,30 +1,22 @@
 package com.hlandim.movies
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
-import com.hlandim.movies.ui.list.MoviesListScreen
-import com.hlandim.movies.viewmodel.MoviesViewModel
+import com.hlandim.movies.ui.list.MoviesListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalFoundationApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val moviesViewModel: MoviesViewModel by viewModels()
-
-    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent{
-            MoviesListScreen(moviesViewModel)
-        }
-    }
+        setContentView(R.layout.activity_main)
 
-    override fun onResume() {
-        super.onResume()
-        moviesViewModel.fetchMovies()
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.content, MoviesListFragment())
+            .commit()
     }
 }
