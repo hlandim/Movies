@@ -6,7 +6,7 @@ data class Movie(
     @SerializedName("original_title")
     val title: String,
 
-    @SerializedName("backdrop_path")
+    @SerializedName("poster_path")
     val thumbnailPath: String?,
 
     val popularity: Double
