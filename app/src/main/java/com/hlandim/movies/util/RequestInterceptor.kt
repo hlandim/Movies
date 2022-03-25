@@ -14,7 +14,6 @@ class RequestInterceptor: Interceptor {
         val originalHttpUrl: HttpUrl = original.url()
 
         val url = originalHttpUrl.newBuilder()
-                //TODO Remove the api key from here it is not safe let it hardcoded
             .addQueryParameter("api_key", API_KEY)
             .build()
 

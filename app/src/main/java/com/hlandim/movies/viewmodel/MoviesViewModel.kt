@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.hlandim.movies.data.Repository
 import com.hlandim.movies.model.MoviesResponse
-import com.hlandim.movies.util.RepositoryResult
+import com.hlandim.movies.data.RepositoryResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher

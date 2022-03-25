@@ -5,7 +5,7 @@ import com.hlandim.movies.data.RepositoryImpl
 import com.hlandim.movies.data.remote.RemoteDataSource
 import com.hlandim.movies.data.remote.themoviedb.TheMovieDbService
 import com.hlandim.movies.util.MockResponseFileReader
-import com.hlandim.movies.util.RepositoryResult
+import com.hlandim.movies.data.RepositoryResult
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse

@@ -1,4 +1,4 @@
-package com.hlandim.movies.util
+package com.hlandim.movies.data
 
 sealed class RepositoryResult<T>(
     val data: T? = null,

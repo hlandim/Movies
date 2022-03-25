@@ -1,6 +1,6 @@
-package com.hlandim.movies.data
+package com.hlandim.movies.data.remote
 
-import com.hlandim.movies.util.RepositoryResult
+import com.hlandim.movies.data.RepositoryResult
 import retrofit2.Response
 
 abstract class BaseApiResponse {

@@ -3,7 +3,6 @@ package com.hlandim.movies.data
 import com.google.gson.Gson
 import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.util.MockResponseFileReader
-import com.hlandim.movies.util.RepositoryResult
 
 class FakeMoviesRepository : Repository {
 
