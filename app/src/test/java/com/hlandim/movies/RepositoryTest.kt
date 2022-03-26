@@ -53,7 +53,7 @@ class RepositoryTest {
 
     @Test
     fun `When calling the requesting the movie list the repository should return the movie list`() {
-        mockResponse = MockResponseFileReader("theMovieDbApi/success.json").content
+        mockResponse = MockResponseFileReader("theMovieDbApi/list_success.json").content
 
         server.enqueue(
             MockResponse()
@@ -71,6 +71,25 @@ class RepositoryTest {
     }
 
     @Test
+    fun `When requesting a movie details the repository should return the movie details`() {
+        mockResponse = MockResponseFileReader("theMovieDbApi/details_success.json").content
+
+        server.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(mockResponse)
+        )
+
+        val id = 634649
+        val response = runBlocking { repository.getMovieDetails(id) }
+
+        Assert.assertNotNull(response)
+        Assert.assertTrue(response is RepositoryResult.Success)
+        Assert.assertNotNull(response.data)
+        Assert.assertEquals(id, response.data?.id)
+    }
+
+    @Test
     fun `When using a wrong auth, then the repository should return an error`() {
 
         server.enqueue(
@@ -83,7 +102,7 @@ class RepositoryTest {
         Assert.assertNotNull(response)
         Assert.assertTrue(response is RepositoryResult.Error)
         Assert.assertNull(response.data)
-        Assert.assertEquals("Api call failed: 401 Client Error" ,response.message)
+        Assert.assertEquals("Api call failed: 401 Client Error", response.message)
     }
 
     @After

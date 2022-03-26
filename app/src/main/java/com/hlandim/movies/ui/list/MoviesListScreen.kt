@@ -25,7 +25,7 @@ import com.hlandim.movies.viewmodel.MoviesViewModel
 @Composable
 fun MoviesListScreen(moviesViewModel: MoviesViewModel, listener: (Movie) -> Unit) {
     MoviesAppTheme {
-        val repositoryResult by moviesViewModel.response.observeAsState()
+        val repositoryResult by moviesViewModel.moviesList.observeAsState()
         Init(repositoryResult, listener)
     }
 }

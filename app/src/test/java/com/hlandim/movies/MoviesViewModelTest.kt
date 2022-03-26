@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert
@@ -45,15 +45,20 @@ class MoviesViewModelTest {
     }
 
     @Test
-    fun `When requesting the movies list, Then it should return the movies list`() {
-
-        mainCoroutineRule.dispatcher.runBlockingTest {
+    fun `When requesting the movies list, Then it should return the movies list`() =
+        runTest {
             viewModel.fetchMovies()
-            val movies = viewModel.response.value?.data
+            val movies = viewModel.moviesList.value?.data
             Assert.assertNotNull(movies)
         }
 
-    }
+    @Test
+    fun `When requesting the movie details, Then it should return the movies details`() =
+        runTest {
+            viewModel.getMovieDetails(634649)
+            val movieDetails = viewModel.movieDetails.value?.data
+            Assert.assertNotNull(movieDetails)
+        }
 
     @After
     fun tearDown() {
