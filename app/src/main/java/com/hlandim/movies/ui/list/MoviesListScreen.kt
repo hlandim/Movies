@@ -2,20 +2,18 @@ package com.hlandim.movies.ui.list
 
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.hlandim.movies.R
 import com.hlandim.movies.data.RepositoryResult
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.ui.MoviesAppTheme
+import com.hlandim.movies.ui.componet.AppMessageText
+import com.hlandim.movies.ui.componet.LoadingMessageText
 import com.hlandim.movies.ui.componet.MoviesList
 import com.hlandim.movies.util.Utils
 import com.hlandim.movies.util.exhaustive
@@ -36,42 +34,20 @@ fun Init(repositoryResult: RepositoryResult<MoviesResponse>?, listener: (Movie) 
     repositoryResult?.let { result ->
         when (result) {
             is RepositoryResult.Error -> {
-                ShowMsg(result.message)
+                AppMessageText(result.message)
             }
             is RepositoryResult.Loading -> {
-                LoadingMessage()
+                LoadingMessageText()
             }
             is RepositoryResult.Success -> {
                 if (result.data != null) {
                     MoviesList(result.data.results.sortedByDescending { it.popularity }, listener)
                 } else {
-                    ShowMsg(stringResource(id = R.string.no_movies_found))
+                    AppMessageText(stringResource(id = R.string.no_movies_found))
                 }
             }
         }.exhaustive
     }
-}
-
-@Composable
-fun ShowMsg(message: String?) {
-    val finalMsg = message ?: stringResource(id = R.string.general_error_msg)
-    Text(
-        text = finalMsg,
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-    )
-}
-
-@Composable
-fun LoadingMessage() {
-    val finalMsg = stringResource(id = R.string.loading_msg)
-    Text(
-        text = finalMsg,
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-    )
 }
 
 @ExperimentalFoundationApi

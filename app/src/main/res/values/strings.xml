@@ -5,4 +5,5 @@
     <string name="no_movies_found">No movies found</string>
     <string name="popularity_label">Popularity: %1s</string>
     <string name="release_year_label">Release Year: %1s</string>
+    <string name="no_movie_details">No movie details found</string>
 </resources>

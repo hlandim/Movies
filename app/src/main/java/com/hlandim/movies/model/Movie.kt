@@ -15,6 +15,8 @@ data class Movie(
     @SerializedName("backdrop_path")
     val backDropPath: String?,
 
+    val overview: String?,
+
     @SerializedName("poster_path")
     val posterPath: String?,
 

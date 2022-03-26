@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.hlandim.movies.model.Movie
 import com.hlandim.movies.viewmodel.MoviesViewModel
-import java.util.Date
 
 class MovieDetailsFragment : Fragment() {
 
@@ -31,23 +29,11 @@ class MovieDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val movieId = arguments?.getInt(ARG_MOVIE_ID)
         return ComposeView(requireContext()).apply {
             setContent {
-                val movie = Movie(
-                    1,
-                    "Title 1",
-                    "/iPhDToxFzREctUA0ZQiYZamXsMy.jpg",
-                    "/iPhDToxFzREctUA0ZQiYZamXsMy.jpg",
-                    1.2,
-                    Date()
-                )
-                MovieDetailsScreen(movie)
+                MovieDetailsScreen(moviesViewModel, movieId)
             }
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val movieId = arguments?.getInt(ARG_MOVIE_ID)
     }
 }

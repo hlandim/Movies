@@ -49,7 +49,7 @@ fun MovieCard(movie: Movie, listener: (Movie) -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             GlideImage(
-                imageModel = Constants.BASE_IMAGE_URL + movie.posterPath,
+                imageModel = "${Constants.BASE_IMAGE_URL}w200${movie.posterPath}",
                 // Crop, Fit, Inside, FillHeight, FillWidth, None
                 contentScale = ContentScale.Fit,
                 // shows an image with the circular reveal animation.
