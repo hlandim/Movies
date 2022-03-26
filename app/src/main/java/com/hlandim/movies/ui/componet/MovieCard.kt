@@ -26,8 +26,9 @@ import androidx.compose.ui.unit.sp
 import com.hlandim.movies.R
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.util.Constants
+import com.hlandim.movies.util.Utils
+import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
-import java.util.*
 
 
 @Composable
@@ -48,18 +49,11 @@ fun MovieCard(movie: Movie, listener: (Movie) -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             GlideImage(
-                imageModel = Constants.BASE_IMAGE_URL + movie.thumbnailPath,
+                imageModel = Constants.BASE_IMAGE_URL + movie.posterPath,
                 // Crop, Fit, Inside, FillHeight, FillWidth, None
                 contentScale = ContentScale.Fit,
-                // draw a resized image.
-//                success = { imageState ->
-//                    imageState.drawable?.let {
-//                        Image(
-//                            bitmap = it,
-//                            modifier = Modifier.size(128.dp)
-//                        )
-//                    }
-//                },
+                // shows an image with the circular reveal animation.
+                circularReveal = CircularReveal(duration = 350),
                 // shows an indicator while loading an image.
                 loading = {
                     Box(modifier = Modifier.matchParentSize()) {
@@ -122,7 +116,7 @@ fun MovieCard(movie: Movie, listener: (Movie) -> Unit) {
 )
 @Composable
 fun PreviewMovieCard() {
-    val movie = Movie(1, "Title 1", "/iPhDToxFzREctUA0ZQiYZamXsMy.jpg", 1.2, Date())
+    val movie = Utils.createMovieMock("Title 1")
     MovieCard(movie) {
 
     }

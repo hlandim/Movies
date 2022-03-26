@@ -1,7 +1,9 @@
 package com.hlandim.movies.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
 
 data class Movie(
 
@@ -10,8 +12,11 @@ data class Movie(
     @SerializedName("original_title")
     val title: String,
 
+    @SerializedName("backdrop_path")
+    val backDropPath: String?,
+
     @SerializedName("poster_path")
-    val thumbnailPath: String?,
+    val posterPath: String?,
 
     val popularity: Double,
 

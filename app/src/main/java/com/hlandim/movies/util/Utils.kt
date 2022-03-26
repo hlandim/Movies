@@ -3,6 +3,9 @@ package com.hlandim.movies.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import com.hlandim.movies.model.Movie
+import java.util.Date
+import kotlin.random.Random
 
 object Utils {
     fun hasInternetConnection(context: Context?): Boolean {
@@ -22,4 +25,7 @@ object Utils {
             else -> false
         }
     }
+
+    fun createMovieMock(title: String) =
+        Movie(Random.nextInt(), title, "", "", Random.nextDouble(), Date())
 }

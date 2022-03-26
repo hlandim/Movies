@@ -16,9 +16,10 @@ import com.hlandim.movies.data.RepositoryResult
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.ui.MoviesAppTheme
+import com.hlandim.movies.ui.componet.MoviesList
+import com.hlandim.movies.util.Utils
 import com.hlandim.movies.util.exhaustive
 import com.hlandim.movies.viewmodel.MoviesViewModel
-import java.util.*
 
 @ExperimentalFoundationApi
 @Composable
@@ -82,17 +83,13 @@ fun LoadingMessage() {
 @Composable
 fun PreviewMoviesListScreen() {
     val movies = listOf(
-        Movie(1, "Title 1", "/iPhDToxFzREctUA0ZQiYZamXsMy.jpg", 1.2, Date()),
-        Movie(2, "Big Title test 123123123", "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg", 1.3, Date()),
-        Movie(3, "Title 2", "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg", 1.3, Date()),
-        Movie(4, "Title 3", "/ewUqXnwiRLhgmGhuksOdLgh49Ch.jpg", 1.4, Date()),
-        Movie(5, "Title 4", "/2hGjmgZrS1nlsEl5PZorn7EsmzH.jpg", 1.0, Date()),
-        Movie(6, "Title 5", "/2hGjmgZrS1nlsEl5PZorn7EsmzH.jpg", 1.0, Date()),
-        Movie(7, "Title 6", "/2hGjmgZrS1nlsEl5PZorn7EsmzH.jpg", 1.0, Date()),
-        Movie(8, "Title 7", "/2hGjmgZrS1nlsEl5PZorn7EsmzH.jpg", 1.0, Date()),
-        Movie(9, "Title 8", "/2hGjmgZrS1nlsEl5PZorn7EsmzH.jpg", 1.0, Date()),
-        Movie(10, "Title 9", "/2hGjmgZrS1nlsEl5PZorn7EsmzH.jpg", 1.0, Date()),
-        Movie(11, "Title 10", "/j2zyoYrWjWyraHMdkqAkSG1MISJ.jpg", 1.9, Date())
+        Utils.createMovieMock("Title 1"),
+        Utils.createMovieMock("Big Title test 123123123"),
+        Utils.createMovieMock("Title 2"),
+        Utils.createMovieMock("Title 3"),
+        Utils.createMovieMock("Title 4"),
+        Utils.createMovieMock("Title 5"),
+        Utils.createMovieMock("Title 6")
     )
     val result = RepositoryResult.Success(MoviesResponse(1, movies, 1, movies.size))
     Init(result) {

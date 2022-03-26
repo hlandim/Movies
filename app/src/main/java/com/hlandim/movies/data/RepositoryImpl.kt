@@ -1,8 +1,8 @@
 package com.hlandim.movies.data
 
 import com.hlandim.movies.data.remote.BaseApiResponse
-import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.data.remote.RemoteDataSource
+import com.hlandim.movies.model.MoviesResponse
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
@@ -14,5 +14,9 @@ class RepositoryImpl @Inject constructor(
         return safeApiCall {
             remoteDataSource.getMovies()
         }
+    }
+
+    override suspend fun getMovieDetails(movieId: Int): RepositoryResult<MoviesResponse> {
+        TODO("Not yet implemented")
     }
 }
