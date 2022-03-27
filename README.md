@@ -11,6 +11,11 @@ Architecture used: MVVM + Dependencie Injenction + Jectpeack Compose.
 - Using courotines for assyncronous work.
 - Light and Dark mode styles.
 
+
+### To do
+- Use Jetpack [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) library to implement the pagination.
+
+
 ### Images
 
 | List | Details  |
