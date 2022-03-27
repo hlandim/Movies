@@ -89,19 +89,17 @@ fun MovieCard(movie: Movie, listener: (Movie) -> Unit) {
                     fontSize = 23.sp,
                     maxLines = 2
                 )
-
                 Text(
                     text = stringResource(id = R.string.popularity_label, movie.popularity),
                     fontSize = 20.sp
                 )
+                movie.getReleaseDateYear()?.let {
+                    Text(
+                        text = stringResource(id = R.string.release_year_label, it),
+                        fontSize = 20.sp,
+                    )
 
-                Text(
-                    text = stringResource(
-                        id = R.string.release_year_label,
-                        movie.getReleaseDateYear()
-                    ),
-                    fontSize = 20.sp,
-                )
+                }
             }
 
         }

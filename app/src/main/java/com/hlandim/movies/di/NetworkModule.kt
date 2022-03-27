@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder
 import com.hlandim.movies.BuildConfig
 import com.hlandim.movies.data.remote.themoviedb.TheMovieDbService
 import com.hlandim.movies.util.Constants.Companion.BASE_URL
+import com.hlandim.movies.util.DateDeserialize
 import com.hlandim.movies.util.RequestInterceptor
 import com.hlandim.movies.util.Utils.hasInternetConnection
 import dagger.Module
@@ -14,6 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import java.io.IOException
+import java.util.Date
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
@@ -63,7 +65,9 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providerGson(): Gson = GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+    fun providerGson(): Gson = GsonBuilder()
+        .registerTypeAdapter(Date::class.java, DateDeserialize())
+        .create()
 
     @Singleton
     @Provides

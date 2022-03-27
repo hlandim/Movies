@@ -61,7 +61,7 @@ class RepositoryTest {
                 .setBody(mockResponse)
         )
 
-        val response = runBlocking { repository.getMovies() }
+        val response = runBlocking { repository.getMovies(1) }
 
         Assert.assertNotNull(response)
         Assert.assertTrue(response is RepositoryResult.Success)
@@ -97,7 +97,7 @@ class RepositoryTest {
                 .setResponseCode(401)
         )
 
-        val response = runBlocking { repository.getMovies() }
+        val response = runBlocking { repository.getMovies(1) }
 
         Assert.assertNotNull(response)
         Assert.assertTrue(response is RepositoryResult.Error)

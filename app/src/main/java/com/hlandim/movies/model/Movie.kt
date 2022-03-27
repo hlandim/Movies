@@ -23,13 +23,17 @@ data class Movie(
     val popularity: Double,
 
     @SerializedName("release_date")
-    val releaseDate: Date
+    val releaseDate: Date?
 
 
 ) {
-    fun getReleaseDateYear(): Int {
-        val calendar: Calendar = GregorianCalendar()
-        calendar.time = releaseDate
-        return calendar[Calendar.YEAR]
+    fun getReleaseDateYear(): Int? {
+        return if (releaseDate != null) {
+            val calendar: Calendar = GregorianCalendar()
+            calendar.time = releaseDate
+            calendar[Calendar.YEAR]
+        } else {
+            null
+        }
     }
 }

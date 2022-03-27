@@ -11,9 +11,9 @@ import javax.inject.Inject
 class RepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseApiResponse(), Repository {
-    override suspend fun getMovies(): RepositoryResult<MoviesResponse> {
+    override suspend fun getMovies(page: Int): RepositoryResult<MoviesResponse> {
         return safeApiCall {
-            remoteDataSource.getMovies()
+            remoteDataSource.getMovies(page)
         }
     }
 

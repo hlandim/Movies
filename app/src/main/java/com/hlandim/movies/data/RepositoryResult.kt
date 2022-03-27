@@ -9,6 +9,4 @@ sealed class RepositoryResult<T>(
 
     class Error<T>(message: String, data: T? = null) : RepositoryResult<T>(data, message)
 
-    class Loading<T> : RepositoryResult<T>()
-
 }

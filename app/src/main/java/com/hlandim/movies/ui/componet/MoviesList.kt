@@ -17,8 +17,11 @@ import com.hlandim.movies.util.Utils
 
 @ExperimentalFoundationApi
 @Composable
-fun MoviesList(movies: List<Movie>, listener: (Movie) -> Unit) {
-
+fun MoviesList(
+    movies: List<Movie>,
+    itemClickedListener: (Movie) -> Unit,
+    onListEndedListener: () -> Unit
+) {
     LazyColumn(
         modifier = Modifier
             .padding(all = 10.dp)
@@ -26,8 +29,11 @@ fun MoviesList(movies: List<Movie>, listener: (Movie) -> Unit) {
                 contentDescription = "MovieList"
             }
     ) {
-        itemsIndexed(movies) { _, movie ->
-            MovieCard(movie = movie, listener)
+        itemsIndexed(movies) { index, movie ->
+            MovieCard(movie = movie, itemClickedListener)
+            if (index == movies.lastIndex) {
+                onListEndedListener()
+            }
         }
     }
 }
@@ -49,8 +55,6 @@ fun PreviewMoviesList() {
         Utils.createMovieMock("Title 5"),
         Utils.createMovieMock("Title 6")
     )
-    MoviesList(movies) {
-
-    }
+    MoviesList(movies, {}, {})
 }
 

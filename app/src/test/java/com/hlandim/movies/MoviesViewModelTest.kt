@@ -47,8 +47,8 @@ class MoviesViewModelTest {
     @Test
     fun `When requesting the movies list, Then it should return the movies list`() =
         runTest {
-            viewModel.fetchMovies()
-            val movies = viewModel.moviesList.value?.data
+            viewModel.fetchNextPage()
+            val movies = viewModel.moviesList.value
             Assert.assertNotNull(movies)
         }
 
@@ -56,7 +56,7 @@ class MoviesViewModelTest {
     fun `When requesting the movie details, Then it should return the movies details`() =
         runTest {
             viewModel.getMovieDetails(634649)
-            val movieDetails = viewModel.movieDetails.value?.data
+            val movieDetails = viewModel.movieDetails.value
             Assert.assertNotNull(movieDetails)
         }
 

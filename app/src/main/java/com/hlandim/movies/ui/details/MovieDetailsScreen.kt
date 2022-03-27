@@ -30,13 +30,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hlandim.movies.R
-import com.hlandim.movies.data.RepositoryResult
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.ui.MoviesAppTheme
+import com.hlandim.movies.ui.componet.ErrorMsg
+import com.hlandim.movies.ui.componet.LoadingMsg
 import com.hlandim.movies.ui.componet.MessageText
 import com.hlandim.movies.util.Constants
 import com.hlandim.movies.util.Utils
-import com.hlandim.movies.util.exhaustive
 import com.hlandim.movies.viewmodel.MoviesViewModel
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
@@ -47,159 +47,154 @@ fun MovieDetailsScreen(moviesViewModel: MoviesViewModel, movieId: Int?) {
         if (movieId == null) {
             MessageText(stringResource(id = R.string.no_movie_details))
         } else {
-            val repositoryResult by moviesViewModel.movieDetails.observeAsState()
-            moviesViewModel.getMovieDetails(movieId)
+
             Scaffold(
-                content = { Init(repositoryResult) }
+                content = { Init(moviesViewModel, movieId) }
             )
+
         }
     }
 }
 
 @Composable
-fun Init(repositoryResult: RepositoryResult<Movie>?) {
+fun Init(moviesViewModel: MoviesViewModel, movieId: Int) {
 
-    repositoryResult?.let { result ->
-        when (result) {
-            is RepositoryResult.Error -> {
-                val msg = result.message ?: stringResource(id = R.string.general_error_msg)
-                MessageText(msg)
-            }
-            is RepositoryResult.Loading -> {
-                MessageText(stringResource(id = R.string.loading_msg))
-            }
-            is RepositoryResult.Success -> {
-                if (result.data != null) {
-                    MovieDetails(result.data)
-                } else {
-                    MessageText(stringResource(id = R.string.no_movie_details))
-                }
-            }
-        }.exhaustive
-    }
+    val movie by moviesViewModel.movieDetails.observeAsState()
+    moviesViewModel.getMovieDetails(movieId)
+    MovieDetails(movie)
 
+    val errorMsg by moviesViewModel.errorMsg.observeAsState()
+    ErrorMsg(errorMsg)
+
+    val loadingState by moviesViewModel.loading.observeAsState()
+    LoadingMsg(loadingState)
 }
 
 @Composable
-fun MovieDetails(movie: Movie) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        item {
-            GlideImage(
-                imageModel = "${Constants.BASE_IMAGE_URL}w400${movie.backDropPath}",
-                // Crop, Fit, Inside, FillHeight, FillWidth, None
-                contentScale = ContentScale.FillWidth,
-                // shows an image with the circular reveal animation.
-                circularReveal = CircularReveal(duration = 350),
-                // shows an indicator while loading an image.
-                loading = {
-                    Box(modifier = Modifier.matchParentSize()) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.align(Alignment.Center)
+fun MovieDetails(movieDetails: Movie?) {
+    movieDetails?.let { movie ->
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            item {
+                GlideImage(
+                    imageModel = "${Constants.BASE_IMAGE_URL}w400${movie.backDropPath}",
+                    // Crop, Fit, Inside, FillHeight, FillWidth, None
+                    contentScale = ContentScale.FillWidth,
+                    // shows an image with the circular reveal animation.
+                    circularReveal = CircularReveal(duration = 350),
+                    // shows an indicator while loading an image.
+                    loading = {
+                        Box(modifier = Modifier.matchParentSize()) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.align(Alignment.Center)
+                            )
+                        }
+                    },
+                    // shows an error text if fail to load an image.
+                    failure = {
+                        Text(text = "image request failed.")
+                    },
+                    // Used by Compose compile when using preview tab
+                    previewPlaceholder = R.drawable.ic_launcher_background,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(180.dp)
+                        .semantics {
+                            contentDescription = "backDropPath"
+                        }
+                )
+                Column(
+                    modifier = Modifier.padding(5.dp)
+                ) {
+                    Row {
+                        GlideImage(
+                            imageModel = "${Constants.BASE_IMAGE_URL}w200${movie.posterPath}",
+                            // Crop, Fit, Inside, FillHeight, FillWidth, None
+                            contentScale = ContentScale.FillWidth,
+                            // shows an image with the circular reveal animation.
+                            circularReveal = CircularReveal(duration = 350),
+                            // shows an indicator while loading an image.
+                            loading = {
+                                Box(modifier = Modifier.matchParentSize()) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.align(Alignment.Center)
+                                    )
+                                }
+                            },
+                            // shows an error text if fail to load an image.
+                            failure = {
+                                Text(text = "image request failed.")
+                            },
+                            // Used by Compose compile when using preview tab
+                            previewPlaceholder = R.drawable.ic_launcher_background,
+                            modifier = Modifier
+                                .height(200.dp)
+                                .width(150.dp)
+                                .semantics {
+                                    contentDescription = "posterPath"
+                                }
                         )
-                    }
-                },
-                // shows an error text if fail to load an image.
-                failure = {
-                    Text(text = "image request failed.")
-                },
-                // Used by Compose compile when using preview tab
-                previewPlaceholder = R.drawable.ic_launcher_background,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(180.dp)
-                    .semantics {
-                    contentDescription = "backDropPath"
-                }
-            )
-            Column(
-                modifier = Modifier.padding(5.dp)
-            ) {
-                Row {
-                    GlideImage(
-                        imageModel = "${Constants.BASE_IMAGE_URL}w200${movie.posterPath}",
-                        // Crop, Fit, Inside, FillHeight, FillWidth, None
-                        contentScale = ContentScale.FillWidth,
-                        // shows an image with the circular reveal animation.
-                        circularReveal = CircularReveal(duration = 350),
-                        // shows an indicator while loading an image.
-                        loading = {
-                            Box(modifier = Modifier.matchParentSize()) {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.align(Alignment.Center)
+                        Column {
+                            val defaultModifier = Modifier
+                                .fillMaxSize()
+                                .padding(2.dp)
+                            Text(
+                                modifier = defaultModifier.semantics {
+                                    contentDescription = "title"
+                                },
+                                text = movie.title,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 23.sp
+                            )
+                            Text(
+                                modifier = defaultModifier.semantics {
+                                    contentDescription = "popularity"
+                                },
+                                text = stringResource(
+                                    id = R.string.popularity_label,
+                                    movie.popularity
+                                ),
+                                textAlign = TextAlign.Center,
+                                fontSize = 20.sp
+                            )
+                            movie.getReleaseDateYear()?.let {
+                                Text(
+                                    modifier = defaultModifier.semantics {
+                                        contentDescription = "releaseYear"
+                                    },
+                                    text = stringResource(id = R.string.release_year_label, it),
+                                    textAlign = TextAlign.Center,
+                                    fontSize = 20.sp,
                                 )
                             }
-                        },
-                        // shows an error text if fail to load an image.
-                        failure = {
-                            Text(text = "image request failed.")
-                        },
-                        // Used by Compose compile when using preview tab
-                        previewPlaceholder = R.drawable.ic_launcher_background,
-                        modifier = Modifier
-                            .height(200.dp)
-                            .width(150.dp)
-                            .semantics {
-                                contentDescription = "posterPath"
-                            }
-                    )
-                    Column {
-                        val defaultModifier = Modifier
-                            .fillMaxSize()
-                            .padding(2.dp)
+                        }
+
+                    }
+                    movie.overview?.let {
                         Text(
-                            modifier = defaultModifier.semantics {
-                                contentDescription = "title"
-                            },
-                            text = movie.title,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(
+                                    top = 15.dp,
+                                    bottom = 5.dp,
+                                    start = 5.dp,
+                                    end = 5.dp
+                                )
+                                .semantics {
+                                    contentDescription = "overview"
+                                },
+                            text = it,
                             textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 23.sp
-                        )
-                        Text(
-                            modifier = defaultModifier.semantics {
-                                contentDescription = "popularity"
-                            },
-                            text = stringResource(id = R.string.popularity_label, movie.popularity),
-                            textAlign = TextAlign.Center,
-                            fontSize = 20.sp
-                        )
-                        Text(
-                            modifier = defaultModifier.semantics {
-                                contentDescription = "releaseYear"
-                            },
-                            text = stringResource(
-                                id = R.string.release_year_label,
-                                movie.getReleaseDateYear()
-                            ),
-                            textAlign = TextAlign.Center,
-                            fontSize = 20.sp,
+                            fontSize = 18.sp
                         )
                     }
+                }
 
-                }
-                movie.overview?.let {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(
-                                top = 15.dp,
-                                bottom = 5.dp,
-                                start = 5.dp,
-                                end = 5.dp
-                            ).semantics {
-                                contentDescription = "overview"
-                            },
-                        text = it,
-                        textAlign = TextAlign.Center,
-                        fontSize = 18.sp
-                    )
-                }
             }
-
         }
     }
 }
@@ -213,8 +208,7 @@ fun MovieDetails(movie: Movie) {
 @Composable
 fun PreviewMovieDetailsScreen() {
     val movie = Utils.createMovieMock("Title 1")
-    val result = RepositoryResult.Success(movie)
     MoviesAppTheme {
-        Init(result)
+        MovieDetails(movie)
     }
 }
