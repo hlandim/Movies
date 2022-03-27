@@ -18,6 +18,6 @@ Architecture used: MVVM + Dependencie Injenction + Jectpeack Compose.
 
 ### Images
 
-| List | Details  |
-|---|---|
-| <img src="https://github.com/hlandim/Movies/blob/main/readme/list.png" width="300"/>    |  <img src="https://github.com/hlandim/Movies/blob/main/readme/details.png" width="300"/> |
+| List | Details | Pagination
+|---|---|---|
+| <img src="https://github.com/hlandim/Movies/blob/main/readme/list.png" width="300"/>    |  <img src="https://github.com/hlandim/Movies/blob/main/readme/details.png" width="300"/> | <img src="https://github.com/hlandim/Movies/blob/main/readme/pagination.gif" width="400"/>
