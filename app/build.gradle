@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.hlandim.movies.util.CustomTestRunner"
     }
 
     buildFeatures {
@@ -58,9 +58,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 
+    // Automated test
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
     // Hilt - DI
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+    testImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+    // ...with Kotlin.
+    kaptTest "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hiltVersion"
 
     // GSON
     implementation 'com.google.code.gson:gson:2.9.0'
@@ -110,6 +119,8 @@ dependencies {
 
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
+    // UI Tests
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$composeVersion"
 
 
 }

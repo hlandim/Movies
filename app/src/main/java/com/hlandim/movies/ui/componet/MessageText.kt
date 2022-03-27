@@ -1,20 +1,38 @@
 package com.hlandim.movies.ui.componet
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.hlandim.movies.R
+import com.hlandim.movies.ui.MoviesAppTheme
+
 
 @Composable
-fun AppMessageText(message: String?) {
-    val finalMsg = message ?: stringResource(id = R.string.general_error_msg)
-    Text(
-        text = finalMsg,
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-    )
+fun MessageText(message: String) {
+    MoviesAppTheme {
+        Surface {
+            Text(
+                text = message,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Preview(
+    name = "Loading msg",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+fun Preview() {
+    MessageText("Testing")
 }

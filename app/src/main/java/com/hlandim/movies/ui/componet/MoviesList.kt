@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hlandim.movies.model.Movie
@@ -20,6 +22,9 @@ fun MoviesList(movies: List<Movie>, listener: (Movie) -> Unit) {
     LazyColumn(
         modifier = Modifier
             .padding(all = 10.dp)
+            .semantics {
+                contentDescription = "MovieList"
+            }
     ) {
         itemsIndexed(movies) { _, movie ->
             MovieCard(movie = movie, listener)

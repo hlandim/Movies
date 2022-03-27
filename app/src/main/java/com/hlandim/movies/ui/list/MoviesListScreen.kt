@@ -12,8 +12,7 @@ import com.hlandim.movies.data.RepositoryResult
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.ui.MoviesAppTheme
-import com.hlandim.movies.ui.componet.AppMessageText
-import com.hlandim.movies.ui.componet.LoadingMessageText
+import com.hlandim.movies.ui.componet.MessageText
 import com.hlandim.movies.ui.componet.MoviesList
 import com.hlandim.movies.util.Utils
 import com.hlandim.movies.util.exhaustive
@@ -34,16 +33,20 @@ fun Init(repositoryResult: RepositoryResult<MoviesResponse>?, listener: (Movie) 
     repositoryResult?.let { result ->
         when (result) {
             is RepositoryResult.Error -> {
-                AppMessageText(result.message)
+                val msg = result.message ?: stringResource(id = R.string.general_error_msg)
+                MessageText(msg)
             }
             is RepositoryResult.Loading -> {
-                LoadingMessageText()
+                MessageText(stringResource(id = R.string.loading_msg))
             }
             is RepositoryResult.Success -> {
                 if (result.data != null) {
-                    MoviesList(result.data.results.sortedByDescending { it.popularity }, listener)
+                    MoviesList(
+                        result.data.results.sortedByDescending { it.popularity },
+                        listener
+                    )
                 } else {
-                    AppMessageText(stringResource(id = R.string.no_movies_found))
+                    MessageText(stringResource(id = R.string.no_movies_found))
                 }
             }
         }.exhaustive

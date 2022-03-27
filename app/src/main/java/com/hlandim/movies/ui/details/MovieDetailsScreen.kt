@@ -21,6 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,8 +32,7 @@ import com.hlandim.movies.R
 import com.hlandim.movies.data.RepositoryResult
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.ui.MoviesAppTheme
-import com.hlandim.movies.ui.componet.AppMessageText
-import com.hlandim.movies.ui.componet.LoadingMessageText
+import com.hlandim.movies.ui.componet.MessageText
 import com.hlandim.movies.util.Constants
 import com.hlandim.movies.util.Utils
 import com.hlandim.movies.util.exhaustive
@@ -43,7 +44,7 @@ import com.skydoves.landscapist.glide.GlideImage
 fun MovieDetailsScreen(moviesViewModel: MoviesViewModel, movieId: Int?) {
     MoviesAppTheme {
         if (movieId == null) {
-            AppMessageText(stringResource(id = R.string.no_movie_details))
+            MessageText(stringResource(id = R.string.no_movie_details))
         } else {
             val repositoryResult by moviesViewModel.movieDetails.observeAsState()
             moviesViewModel.getMovieDetails(movieId)
@@ -60,16 +61,17 @@ fun Init(repositoryResult: RepositoryResult<Movie>?) {
     repositoryResult?.let { result ->
         when (result) {
             is RepositoryResult.Error -> {
-                AppMessageText(result.message)
+                val msg = result.message ?: stringResource(id = R.string.general_error_msg)
+                MessageText(msg)
             }
             is RepositoryResult.Loading -> {
-                LoadingMessageText()
+                MessageText(stringResource(id = R.string.loading_msg))
             }
             is RepositoryResult.Success -> {
                 if (result.data != null) {
                     MovieDetails(result.data)
                 } else {
-                    AppMessageText(stringResource(id = R.string.no_movie_details))
+                    MessageText(stringResource(id = R.string.no_movie_details))
                 }
             }
         }.exhaustive
@@ -105,6 +107,9 @@ fun MovieDetails(movie: Movie) {
                 },
                 // Used by Compose compile when using preview tab
                 previewPlaceholder = R.drawable.ic_launcher_background,
+                modifier = Modifier.semantics {
+                    contentDescription = "backDropPath"
+                }
             )
             Column(
                 modifier = Modifier.padding(5.dp)
@@ -133,26 +138,35 @@ fun MovieDetails(movie: Movie) {
                         modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
+                            .semantics {
+                                contentDescription = "posterPath"
+                            }
                     )
                     Column {
                         val defaultModifier = Modifier
                             .fillMaxSize()
                             .padding(2.dp)
                         Text(
-                            modifier = defaultModifier,
+                            modifier = defaultModifier.semantics {
+                                contentDescription = "title"
+                            },
                             text = movie.title,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
                             fontSize = 23.sp
                         )
                         Text(
-                            modifier = defaultModifier,
+                            modifier = defaultModifier.semantics {
+                                contentDescription = "popularity"
+                            },
                             text = stringResource(id = R.string.popularity_label, movie.popularity),
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp
                         )
                         Text(
-                            modifier = defaultModifier,
+                            modifier = defaultModifier.semantics {
+                                contentDescription = "releaseYear"
+                            },
                             text = stringResource(
                                 id = R.string.release_year_label,
                                 movie.getReleaseDateYear()
@@ -172,7 +186,9 @@ fun MovieDetails(movie: Movie) {
                                 bottom = 5.dp,
                                 start = 5.dp,
                                 end = 5.dp
-                            ),
+                            ).semantics {
+                                contentDescription = "overview"
+                            },
                         text = it,
                         textAlign = TextAlign.Center,
                         fontSize = 18.sp
