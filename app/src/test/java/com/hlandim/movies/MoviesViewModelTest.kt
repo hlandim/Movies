@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.hlandim.movies.data.FakeMoviesRepository
 import com.hlandim.movies.util.MainCoroutineRule
+import com.hlandim.movies.util.Utils
 import com.hlandim.movies.viewmodel.MoviesViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
@@ -50,6 +51,21 @@ class MoviesViewModelTest {
             viewModel.fetchNextPage()
             val movies = viewModel.moviesList.value
             Assert.assertNotNull(movies)
+        }
+
+    @Test
+    fun `Given a selected movie, When requesting the movie details, Then it should return the movies details`() =
+        runTest {
+            //Given
+            val movieMock = Utils.createMovieMock("Test Movie")
+            viewModel.selectedMovie(movieMock)
+
+            //When
+            val selectedMovie = viewModel.movieDetails.value
+
+            // Then
+            Assert.assertNotNull(selectedMovie)
+            Assert.assertEquals(movieMock, selectedMovie)
         }
 
     @After
