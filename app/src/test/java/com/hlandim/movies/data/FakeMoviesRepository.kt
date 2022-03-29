@@ -1,7 +1,6 @@
 package com.hlandim.movies.data
 
 import com.google.gson.Gson
-import com.hlandim.movies.model.Movie
 import com.hlandim.movies.model.MoviesResponse
 import com.hlandim.movies.util.MockResponseFileReader
 
