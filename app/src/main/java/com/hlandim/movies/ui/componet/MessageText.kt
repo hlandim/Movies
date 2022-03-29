@@ -28,7 +28,7 @@ fun MessageText(message: String) {
 }
 
 @Preview(
-    name = "Loading msg",
+    name = "Message text",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )

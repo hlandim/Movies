@@ -16,10 +16,4 @@ class RepositoryImpl @Inject constructor(
             remoteDataSource.getMovies(page)
         }
     }
-
-    override suspend fun getMovieDetails(movieId: Int): RepositoryResult<Movie> {
-        return safeApiCall {
-            remoteDataSource.getMovieDetails(movieId)
-        }
-    }
 }

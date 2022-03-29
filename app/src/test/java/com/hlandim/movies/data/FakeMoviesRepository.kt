@@ -12,10 +12,4 @@ class FakeMoviesRepository : Repository {
         val moviesResponse = Gson().fromJson(jsonResponse, MoviesResponse::class.java)
         return RepositoryResult.Success(moviesResponse)
     }
-
-    override suspend fun getMovieDetails(movieId: Int): RepositoryResult<Movie> {
-        val jsonResponse = MockResponseFileReader("theMovieDbApi/details_success.json").content
-        val movieResponse = Gson().fromJson(jsonResponse, Movie::class.java)
-        return RepositoryResult.Success(movieResponse)
-    }
 }

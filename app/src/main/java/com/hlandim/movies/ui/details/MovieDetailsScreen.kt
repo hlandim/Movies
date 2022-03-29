@@ -16,8 +16,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -32,42 +31,24 @@ import androidx.compose.ui.unit.sp
 import com.hlandim.movies.R
 import com.hlandim.movies.model.Movie
 import com.hlandim.movies.ui.MoviesAppTheme
-import com.hlandim.movies.ui.componet.ErrorMsg
-import com.hlandim.movies.ui.componet.LoadingMsg
-import com.hlandim.movies.ui.componet.MessageText
 import com.hlandim.movies.util.Constants
 import com.hlandim.movies.util.Utils
-import com.hlandim.movies.viewmodel.MoviesViewModel
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun MovieDetailsScreen(moviesViewModel: MoviesViewModel, movieId: Int?) {
+fun MovieDetailsScreen(movie: Movie) {
     MoviesAppTheme {
-        if (movieId == null) {
-            MessageText(stringResource(id = R.string.no_movie_details))
-        } else {
-
-            Scaffold(
-                content = { Init(moviesViewModel, movieId) }
-            )
-
-        }
+        Scaffold(
+            content = { Init(movie) }
+        )
     }
 }
 
 @Composable
-fun Init(moviesViewModel: MoviesViewModel, movieId: Int) {
-
-    val movie by moviesViewModel.movieDetails.observeAsState()
-    moviesViewModel.getMovieDetails(movieId)
-    MovieDetails(movie)
-
-    val errorMsg by moviesViewModel.errorMsg.observeAsState()
-    ErrorMsg(errorMsg)
-
-    val loadingState by moviesViewModel.loading.observeAsState()
-    LoadingMsg(loadingState)
+fun Init(movie: Movie) {
+    val movieState = remember { movie }
+    MovieDetails(movieState)
 }
 
 @Composable

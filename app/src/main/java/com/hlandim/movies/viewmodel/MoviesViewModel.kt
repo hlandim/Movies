@@ -69,15 +69,7 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
-    fun getMovieDetails(movieId: Int) {
-        _loading.value = true
-        viewModelScope.launch(dispatcher) {
-            val repoResult = repository.getMovieDetails(movieId)
-            when (repoResult) {
-                is RepositoryResult.Error -> _errorMsg.postValue(repoResult.message)
-                is RepositoryResult.Success -> _movieDetails.postValue(repoResult.data)
-            }
-            _loading.postValue(false)
-        }
+    fun selectedMovie(movie: Movie) {
+        _movieDetails.value = movie
     }
 }

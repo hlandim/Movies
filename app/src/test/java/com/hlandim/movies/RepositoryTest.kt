@@ -71,25 +71,6 @@ class RepositoryTest {
     }
 
     @Test
-    fun `When requesting a movie details the repository should return the movie details`() {
-        mockResponse = MockResponseFileReader("theMovieDbApi/details_success.json").content
-
-        server.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(mockResponse)
-        )
-
-        val id = 634649
-        val response = runBlocking { repository.getMovieDetails(id) }
-
-        Assert.assertNotNull(response)
-        Assert.assertTrue(response is RepositoryResult.Success)
-        Assert.assertNotNull(response.data)
-        Assert.assertEquals(id, response.data?.id)
-    }
-
-    @Test
     fun `When using a wrong auth, then the repository should return an error`() {
 
         server.enqueue(

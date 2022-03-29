@@ -52,14 +52,6 @@ class MoviesViewModelTest {
             Assert.assertNotNull(movies)
         }
 
-    @Test
-    fun `When requesting the movie details, Then it should return the movies details`() =
-        runTest {
-            viewModel.getMovieDetails(634649)
-            val movieDetails = viewModel.movieDetails.value
-            Assert.assertNotNull(movieDetails)
-        }
-
     @After
     fun tearDown() {
         Dispatchers.resetMain()

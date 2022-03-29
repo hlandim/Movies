@@ -6,6 +6,5 @@ import com.hlandim.movies.model.MoviesResponse
 interface Repository {
 
     suspend fun getMovies(page: Int): RepositoryResult<MoviesResponse>
-    suspend fun getMovieDetails(movieId: Int): RepositoryResult<Movie>
 
 }
