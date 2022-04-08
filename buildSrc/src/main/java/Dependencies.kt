@@ -22,7 +22,7 @@ object Versions {
     const val androidMaterial = "1.5.0"
     const val constraintLayout = "2.1.3"
     const val ktx = "1.7.0"
-    const val mockito = "1.7.0"
+    const val mockito = "1.12.1"
 }
 
 object Libs {
