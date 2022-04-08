@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/compose-model-1648193256463.xml" value="0.625" />
+        <entry key="../../../../layout/compose-model-1648194122001.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1648196956489.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1648205337679.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1648223617121.xml" value="0.12922297297297297" />
+        <entry key="../../../../layout/compose-model-1648225063671.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1648225119627.xml" value="0.12922297297297297" />
+        <entry key="../../../../layout/compose-model-1648225327197.xml" value="0.21157094594594594" />
+        <entry key="../../../../layout/compose-model-1648253102426.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648253223084.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648253360990.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648253694962.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648254166758.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648254640857.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648255323825.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648277617341.xml" value="0.18333333333333332" />
+        <entry key="../../../../layout/compose-model-1648278312774.xml" value="0.18333333333333332" />
+        <entry key="../../../../layout/compose-model-1648278717626.xml" value="0.18333333333333332" />
+        <entry key="../../../../layout/compose-model-1648278817736.xml" value="0.18333333333333332" />
+        <entry key="../../../../layout/compose-model-1648338244622.xml" value="0.1537037037037037" />
+        <entry key="../../../../layout/compose-model-1648339572526.xml" value="0.1537037037037037" />
+        <entry key="../../../../layout/compose-model-1648340389596.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648343166331.xml" value="0.625" />
+        <entry key="../../../../layout/compose-model-1648343686008.xml" value="0.21157094594594594" />
+        <entry key="../../../../layout/compose-model-1648380790361.xml" value="0.12922297297297297" />
+        <entry key="../../../../layout/compose-model-1648382429766.xml" value="0.335" />
+        <entry key="../../../../layout/compose-model-1648383816722.xml" value="0.18333333333333332" />
+        <entry key="../../../../layout/compose-model-1648385545033.xml" value="0.15550755939524838" />
+        <entry key="../../../../layout/compose-model-1648385618864.xml" value="0.18333333333333332" />
+        <entry key="../../../../layout/compose-model-1648545843873.xml" value="0.39166666666666666" />
+        <entry key="../../../../layout/compose-model-1648545872471.xml" value="0.39166666666666666" />
+        <entry key="../../../../layout/compose-model-1648545904722.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648545921241.xml" value="0.3171452702702703" />
+        <entry key="../../../../layout/compose-model-1648545949846.xml" value="0.3171452702702703" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1923899102180419" />
+        <entry key="app/src/main/res/layout/fragment_movies_list.xml" value="0.42441860465116277" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
