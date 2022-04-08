@@ -9,7 +9,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hlandim.movies.R
-import com.hlandim.movies.model.Movie
 import com.hlandim.movies.ui.details.MovieDetailsFragment
 import com.hlandim.movies.viewmodel.MoviesViewModel
 
@@ -27,13 +26,14 @@ class MoviesListFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 MoviesListScreen(moviesViewModel) {
-                    showDetailsScreen(it)
+                    moviesViewModel.selectedMovie(it)
+                    showDetailsScreen()
                 }
             }
         }
     }
 
-    private fun showDetailsScreen(movie: Movie) {
+    private fun showDetailsScreen() {
         activity?.let {
             it.supportFragmentManager
                 .beginTransaction()
@@ -45,7 +45,7 @@ class MoviesListFragment : Fragment() {
                 )
                 .add(
                     R.id.content,
-                    MovieDetailsFragment.newInstance(movie.id),
+                    MovieDetailsFragment(),
                     MovieDetailsFragment::class.simpleName
                 )
                 .addToBackStack(null)

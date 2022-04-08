@@ -5,9 +5,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -56,7 +53,10 @@ fun InitList(
             Column {
                 Box() {
                     MoviesList(moviesList, onMovieSelectedListener, onListEnded)
-                    Box(Modifier.fillMaxHeight().align(Alignment.BottomEnd)) {
+                    Box(
+                        Modifier
+                            .fillMaxHeight()
+                            .align(Alignment.BottomEnd)) {
                         if (isLoading) {
                             Box(Modifier.align(Alignment.BottomEnd)) {
                                 LoadingMsg(loadingState)

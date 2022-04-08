@@ -2,10 +2,10 @@ package com.hlandim.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.hlandim.movies.data.RepositoryImpl
+import com.hlandim.movies.data.RepositoryResult
 import com.hlandim.movies.data.remote.RemoteDataSource
 import com.hlandim.movies.data.remote.themoviedb.TheMovieDbService
 import com.hlandim.movies.util.MockResponseFileReader
-import com.hlandim.movies.data.RepositoryResult
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
@@ -68,25 +68,6 @@ class RepositoryTest {
         Assert.assertNotNull(response.data)
         Assert.assertEquals(1, response.data!!.page)
         Assert.assertEquals(20, response.data!!.results.size)
-    }
-
-    @Test
-    fun `When requesting a movie details the repository should return the movie details`() {
-        mockResponse = MockResponseFileReader("theMovieDbApi/details_success.json").content
-
-        server.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(mockResponse)
-        )
-
-        val id = 634649
-        val response = runBlocking { repository.getMovieDetails(id) }
-
-        Assert.assertNotNull(response)
-        Assert.assertTrue(response is RepositoryResult.Success)
-        Assert.assertNotNull(response.data)
-        Assert.assertEquals(id, response.data?.id)
     }
 
     @Test

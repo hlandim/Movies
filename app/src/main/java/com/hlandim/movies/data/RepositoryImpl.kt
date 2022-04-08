@@ -2,7 +2,6 @@ package com.hlandim.movies.data
 
 import com.hlandim.movies.data.remote.BaseApiResponse
 import com.hlandim.movies.data.remote.RemoteDataSource
-import com.hlandim.movies.model.Movie
 import com.hlandim.movies.model.MoviesResponse
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
@@ -14,12 +13,6 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getMovies(page: Int): RepositoryResult<MoviesResponse> {
         return safeApiCall {
             remoteDataSource.getMovies(page)
-        }
-    }
-
-    override suspend fun getMovieDetails(movieId: Int): RepositoryResult<Movie> {
-        return safeApiCall {
-            remoteDataSource.getMovieDetails(movieId)
         }
     }
 }

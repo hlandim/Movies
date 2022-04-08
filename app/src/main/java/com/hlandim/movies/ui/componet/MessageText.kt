@@ -6,10 +6,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.hlandim.movies.R
 import com.hlandim.movies.ui.MoviesAppTheme
 
 
@@ -28,7 +26,7 @@ fun MessageText(message: String) {
 }
 
 @Preview(
-    name = "Loading msg",
+    name = "Message text",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
