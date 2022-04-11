@@ -6,8 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk = 32
-    buildToolsVersion = Apps.buildToolsVersion
+    compileSdk = Apps.compileSdk
 
     defaultConfig {
         applicationId = Apps.applicationId
@@ -43,10 +42,10 @@ dependencies {
     implementation(Libs.ktxCore)
     implementation(Libs.appcompat)
     implementation(Libs.androidMaterial)
-    implementation(Libs.constraintLayout)
     testImplementation(Libs.junit)
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation(Libs.extJunit)
     androidTestImplementation(Libs.espresso)
+    implementation(Libs.constraintLayout)
 
 
     // Automated test
@@ -60,23 +59,13 @@ dependencies {
     kaptTest(Libs.hiltCompile)
     kaptAndroidTest(Libs.hiltCompile)
 
-    // GSON
-    implementation(Libs.gson)
-
-    // Retrofit
-    implementation(Libs.retrofit)
-    implementation(Libs.retrofitLogging)
-    implementation(Libs.retrofitConverterGson)
+    // GSON - Used only to parse a JSON for test purpose
+    testImplementation(Libs.gson)
 
     // Coroutines
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)
     testImplementation(Libs.coroutinesTest)
-
-    //MockWebserver
-    testImplementation(Libs.mockWebServer)
-    // Needed for unit testing API
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
 
     // ViewModel
     implementation(Libs.lifecycleViewModel)
@@ -111,6 +100,8 @@ dependencies {
 
     // UI Tests
     androidTestImplementation(Libs.composeUiTestJunit)
+
+    implementation(project(Module.central))
 
 
 }

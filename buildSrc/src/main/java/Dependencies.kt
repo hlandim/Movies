@@ -1,6 +1,6 @@
 object Apps {
     const val applicationId = "com.hlandim.movies"
-    const val compileSdk = 30
+    const val compileSdk = 32
     const val buildToolsVersion = "30.0.2"
     const val minSdk = 24
     const val targetSdk = 32
@@ -34,6 +34,7 @@ object Libs {
 
     // jUnit
     const val junit = "junit:junit:${Versions.junit}"
+    const val extJunit = "androidx.test.ext:junit:1.1.3"
 
     // Espresso
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
@@ -88,4 +89,8 @@ object Libs {
 
     // Landscapist - A Compose component using Glide
     const val landscapist = "com.github.skydoves:landscapist-glide:1.5.0"
+}
+
+object Module {
+    const val central = ":central"
 }
