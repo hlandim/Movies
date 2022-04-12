@@ -1,19 +1,15 @@
 package com.hlandim.movies
 
-import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.hlandim.movies.data.FakeMoviesRepository
-import com.hlandim.movies.util.MainCoroutineRule
 import com.hlandim.movies.util.Utils
 import com.hlandim.movies.viewmodel.MoviesViewModel
 import io.mockk.MockKAnnotations
-import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -22,16 +18,11 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class MoviesViewModelTest {
-    private val testDispatcher = TestCoroutineDispatcher()
-
-    @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+    private val scheduler = TestCoroutineScheduler()
+    private val testDispatcher = StandardTestDispatcher(scheduler)
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
-
-    @MockK
-    lateinit var application: Application
 
     private lateinit var viewModel: MoviesViewModel
 
@@ -39,39 +30,36 @@ class MoviesViewModelTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        Dispatchers.setMain(mainCoroutineRule.dispatcher)
 
-        viewModel = MoviesViewModel(application, FakeMoviesRepository(), testDispatcher)
+        viewModel = MoviesViewModel(FakeMoviesRepository(), testDispatcher)
 
     }
 
     @Test
-    fun `When requesting the movies list, Then it should return the movies list`() =
-        runTest {
-            viewModel.fetchNextPage()
-            val movies = viewModel.moviesList.value
-            Assert.assertNotNull(movies)
-        }
+    fun `When requesting the movies list, Then it should return the movies list`() {
+        viewModel.fetchNextPage()
+        scheduler.advanceUntilIdle()
+        val movies = viewModel.moviesList.value
+        Assert.assertNotNull(movies)
+    }
 
     @Test
-    fun `Given a selected movie, When requesting the movie details, Then it should return the movies details`() =
-        runTest {
-            //Given
-            val movieMock = Utils.createMovieMock("Test Movie")
-            viewModel.selectedMovie(movieMock)
+    fun `Given a selected movie, When requesting the movie details, Then it should return the movies details`() {
+        //Given
+        val movieMock = Utils.createMovieMock("Test Movie")
+        viewModel.selectedMovie(movieMock)
 
-            //When
-            val selectedMovie = viewModel.movieDetails.value
+        //When
+        val selectedMovie = viewModel.movieDetails.value
 
-            // Then
-            Assert.assertNotNull(selectedMovie)
-            Assert.assertEquals(movieMock, selectedMovie)
-        }
+        // Then
+        Assert.assertNotNull(selectedMovie)
+        Assert.assertEquals(movieMock, selectedMovie)
+    }
 
     @After
     fun tearDown() {
         Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
     }
 
 }

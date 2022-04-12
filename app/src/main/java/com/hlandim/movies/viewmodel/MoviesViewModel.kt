@@ -1,9 +1,8 @@
 package com.hlandim.movies.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hlandim.movies.central.data.Repository
 import com.hlandim.movies.central.data.RepositoryResult
@@ -16,10 +15,9 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    application: Application,
     private val repository: Repository,
     private val dispatcher: CoroutineDispatcher // Used for unit tests
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     private val _moviesList: MutableLiveData<MutableList<MovieResponse>> =
         MutableLiveData()
@@ -35,7 +33,7 @@ class MoviesViewModel @Inject constructor(
     private val _errorMsg: MutableLiveData<String> = MutableLiveData()
     val errorMsg: MutableLiveData<String> = _errorMsg
 
-    var currentPage = 0
+    private var currentPage = 0
 
     init {
         fetchNextPage()

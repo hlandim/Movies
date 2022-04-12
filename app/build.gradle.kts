@@ -101,7 +101,10 @@ dependencies {
     // UI Tests
     androidTestImplementation(Libs.composeUiTestJunit)
 
-    implementation(project(Module.central))
+    // Needed for unit testing API
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
 
+    //Modules
+    implementation(project(Module.central))
 
 }
