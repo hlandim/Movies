@@ -49,26 +49,25 @@ android {
 
 dependencies {
 
-    implementation(Libs.junit)
-    implementation(Libs.extJunit)
+    implementation(Libs.junit_junit)
+    implementation(Libs.androidx_test_ext_junit)
 
     // Hilt - DI
-    implementation(Libs.hilt)
-    androidTestImplementation(Libs.hiltTest) // Automated test
-    kapt(Libs.hiltAndroidCompile)
-    kapt(Libs.hiltCompile)
-    testImplementation(Libs.hiltTest)
-    kaptTest(Libs.hiltAndroidCompile)
-    kaptAndroidTest(Libs.hiltAndroidCompile)
+    implementation(Libs.hilt_android)
+    androidTestImplementation(Libs.hilt_android_testing) // Automated test
+    kapt(Libs.hilt_android_compiler)
+    testImplementation(Libs.hilt_android_testing)
+    kaptTest(Libs.hilt_android_testing)
+    kaptAndroidTest(Libs.hilt_android_compiler)
 
     // Retrofit
     implementation(Libs.retrofit)
-    implementation(Libs.retrofitLogging)
-    implementation(Libs.retrofitConverterGson)
+    implementation(Libs.logging_interceptor)
+    implementation(Libs.converter_gson)
 
     // Coroutines
-    api(Libs.coroutinesCore)
-    api(Libs.coroutinesAndroid)
-    testApi(Libs.coroutinesTest)
+    api(Libs.kotlinx_coroutines_core)
+    api(Libs.kotlinx_coroutines_android)
+    testApi(Libs.kotlinx_coroutines_test)
 
 }

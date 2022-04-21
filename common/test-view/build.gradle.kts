@@ -32,25 +32,25 @@ android {
 
     hilt {
         enableAggregatingTask = true
-        enableTransformForLocalTests = true
     }
 }
 
 dependencies {
 
-    implementation(Libs.appcompat)
-    testImplementation(Libs.junit)
+    implementation(Libs.junit_junit)
+    implementation(Libs.androidx_test_ext_junit)
 
-    implementation(Libs.hiltTest)
-    api(Libs.composeUiTestJunit)
+    implementation(Libs.hilt_android_testing)
+    api(Libs.ui_test_junit4)
 
-    api(Libs.androidxTestCore)
-    api(Libs.androidxTestRules)
+//    api(Libs.androidxTestCore)
+//    api(Libs.rule)
 
     // Hilt - DI
-    implementation(Libs.hilt)
-    testImplementation(Libs.hiltTest)
-    kapt(Libs.hiltAndroidCompile)
-    kapt(Libs.hiltCompile)
-
+    implementation(Libs.hilt_android)
+    androidTestImplementation(Libs.hilt_android_testing) // Automated test
+    kapt(Libs.hilt_android_compiler)
+    testImplementation(Libs.hilt_android_testing)
+    kaptTest(Libs.hilt_android_testing)
+    kaptAndroidTest(Libs.hilt_android_compiler)
 }

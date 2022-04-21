@@ -16,7 +16,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompile
+        kotlinCompilerExtensionVersion = Apps.versions.getProperty("version.androidx.compose.compiler")
     }
 
     buildTypes {
@@ -39,31 +39,31 @@ android {
 
 dependencies {
 
-    implementation(Libs.androidxKtx)
+    implementation(Libs.core_ktx)
     implementation(Libs.appcompat)
-    implementation(Libs.androidMaterial)
-    testImplementation(Libs.junit)
-    androidTestImplementation(Libs.extJunit)
+    implementation(Libs.com_google_android_material_material)
+    testImplementation(Libs.junit_junit)
+    androidTestImplementation(Libs.androidx_test_ext_junit)
 
     // Android JetpackCompose
-    implementation(Libs.composeUi)
+    implementation(Libs.ui)
     // Tooling support (Previews, etc.)
-    debugImplementation(Libs.composeUiTooling)
-    implementation(Libs.composeUiToolingPreview)
+    debugImplementation(Libs.ui_tooling_preview)
+    implementation(Libs.ui_tooling_preview)
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation(Libs.composeFoundation)
+    implementation(Libs.foundation)
     // Material Design
-    implementation(Libs.composeMaterial)
+    implementation(Libs.androidx_compose_material_material)
     // Material design icons
-    implementation(Libs.composeMaterialIcons)
-    implementation(Libs.composeMaterialIconsExtended)
+    implementation(Libs.material_icons_core)
+    implementation(Libs.material_icons_extended)
     // Integration with activities
-    implementation(Libs.composeActivities)
+    implementation(Libs.activity_compose)
     // Integration with ViewModels
-    implementation(Libs.lifecycleViewModelCompose)
+    implementation(Libs.lifecycle_viewmodel_compose)
     // Integration with observables
-    implementation(Libs.composeLivedata)
+    implementation(Libs.runtime_livedata)
 
-    implementation(Libs.composeCompile)
+    implementation(Libs.androidx_compose_compiler_compiler)
 
 }

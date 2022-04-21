@@ -22,7 +22,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompile
+        kotlinCompilerExtensionVersion = Apps.versions.getProperty("version.androidx.compose.compiler")
     }
 
     buildTypes {
@@ -46,34 +46,32 @@ android {
 dependencies {
 
     implementation(Libs.appcompat)
-    implementation(Libs.androidMaterial)
+    implementation(Libs.com_google_android_material_material)
 
     implementation(project(Module.commonUi))
-    implementation(project(Module.central)) {
-        // Dagger/Hilt will not be used by this module
-        exclude(group = "com.google.dagger")
-    }
+    implementation(project(Module.central))
 
     // Android JetpackCompose
-    implementation(Libs.composeUi)
+    implementation(Libs.ui)
     // Tooling support (Previews, etc.)
-    debugImplementation(Libs.composeUiTooling)
-    implementation(Libs.composeUiToolingPreview)
+    debugImplementation(Libs.ui_tooling_preview)
+    implementation(Libs.ui_tooling_preview)
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation(Libs.composeFoundation)
+    implementation(Libs.foundation)
     // Material Design
-    implementation(Libs.composeMaterial)
+    implementation(Libs.androidx_compose_material_material)
     // Material design icons
-    implementation(Libs.composeMaterialIcons)
-    implementation(Libs.composeMaterialIconsExtended)
+    implementation(Libs.material_icons_core)
+    implementation(Libs.material_icons_extended)
     // Integration with activities
-    implementation(Libs.composeActivities)
+    implementation(Libs.activity_compose)
     // Integration with ViewModels
-    implementation(Libs.lifecycleViewModelCompose)
+    implementation(Libs.lifecycle_viewmodel_compose)
     // Integration with observables
-    implementation(Libs.composeLivedata)
+    implementation(Libs.runtime_livedata)
 
-    implementation(Libs.composeCompile)
+    implementation(Libs.androidx_compose_compiler_compiler)
+    implementation(Libs.landscapist_glide)
 
-    implementation(Libs.landscapist)
+
 }

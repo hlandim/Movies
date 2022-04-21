@@ -23,7 +23,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompile
+        kotlinCompilerExtensionVersion = Apps.versions.getProperty("version.androidx.compose.compiler")
     }
 
     buildTypes {
@@ -42,30 +42,28 @@ android {
 
 dependencies {
 
-    implementation(Libs.androidxKtx)
+    implementation(Libs.core_ktx)
     implementation(Libs.appcompat)
-    implementation(Libs.androidMaterial)
-    testImplementation(Libs.junit)
-    androidTestImplementation(Libs.extJunit)
-    androidTestImplementation(Libs.espresso)
-    implementation(Libs.constraintLayout)
+    implementation(Libs.com_google_android_material_material)
+    testImplementation(Libs.junit_junit)
+    androidTestImplementation(Libs.androidx_test_ext_junit)
+    implementation(Libs.constraintlayout)
 
-    implementation(Libs.composeFoundation)
+    implementation(Libs.foundation)
 
     //Modules
     implementation(project(Module.central))
-    implementation(project(Module.moviesList))
+    implementation(project(Module.featMoviesList))
 
 
 //    testImplementation(Libs.composeUiTestJunit)
-    testImplementation(Libs.hiltTest)
+    testImplementation(Libs.hilt_android_testing)
 
-    implementation("androidx.fragment:fragment-ktx:1.4.1")
-    implementation(Libs.lifecycleViewModel)
+    implementation(AndroidX.fragment.ktx)
+    implementation(Libs.lifecycle_viewmodel_ktx)
 
     // Hilt - DI
-    implementation(Libs.hilt)
-    kapt(Libs.hiltCompile)
-    kapt(Libs.hiltAndroidCompile)
+    implementation(Libs.hilt_android)
+    kapt(Libs.hilt_android_compiler)
 
 }

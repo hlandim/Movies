@@ -20,7 +20,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompile
+        kotlinCompilerExtensionVersion = Apps.versions.getProperty("version.androidx.compose.compiler")
     }
 
     buildTypes {
@@ -42,7 +42,6 @@ android {
 
     hilt {
         enableAggregatingTask = true
-        enableTransformForLocalTests = true
     }
 }
 
@@ -52,71 +51,67 @@ dependencies {
     implementation(project(Module.commonUi))
     androidTestImplementation(project(Module.commonTestView))
 
-    implementation(Libs.androidxKtx)
+    implementation(Libs.core_ktx)
     implementation(Libs.appcompat)
-    implementation(Libs.androidMaterial)
-    testImplementation(Libs.junit)
-    androidTestImplementation(Libs.extJunit)
-    androidTestImplementation(Libs.androidxKtx)
-    androidTestImplementation(Libs.espresso)
+    implementation(Libs.com_google_android_material_material)
+    testImplementation(Libs.junit_junit)
+    androidTestImplementation(Libs.androidx_test_ext_junit)
+    androidTestImplementation(Libs.core_ktx)
+    androidTestImplementation(Libs.espresso_core)
 
     // GSON
     testImplementation(Libs.gson)
 
     // Retrofit
     testImplementation(Libs.retrofit)
-    testImplementation(Libs.retrofitLogging)
-    testImplementation(Libs.retrofitConverterGson)
-    androidTestImplementation(Libs.retrofitLogging)
-    androidTestImplementation(Libs.retrofitConverterGson)
+    testImplementation(Libs.logging_interceptor)
+    testImplementation(Libs.converter_gson)
+    androidTestImplementation(Libs.logging_interceptor)
+    androidTestImplementation(Libs.converter_gson)
 
     // Coroutines
-    testImplementation(Libs.coroutinesTest)
+    testImplementation(Libs.kotlinx_coroutines_test)
 
     //Mockito
-    testImplementation(Libs.mockito)
+    testImplementation(Libs.mockk)
 
-    implementation("androidx.fragment:fragment-ktx:1.4.1")
+    implementation(Libs.fragment_ktx)
 
     //MockWebserver
-    testImplementation(Libs.mockWebServer)
+    testImplementation(Libs.mockwebserver)
     // Needed for unit testing API
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation(Libs.core_testing)
 
     // ViewModel
-    implementation(Libs.lifecycleViewModel)
+    implementation(Libs.lifecycle_viewmodel_ktx)
 
 
     // Hilt - DI
-    implementation(Libs.hilt)
-    androidTestImplementation(Libs.hiltTest) // Automated test hilt-android-testing
-    testImplementation(Libs.hiltTest)
-    kapt(Libs.hiltAndroidCompile)
-    kapt(Libs.hiltCompile)
-    kaptTest(Libs.hiltAndroidCompile)
-    kaptAndroidTest(Libs.hiltCompile)
-    kaptAndroidTest(Libs.hiltTest)
-    kaptAndroidTest(Libs.hiltAndroidCompile)
+    implementation(Libs.hilt_android)
+    androidTestImplementation(Libs.hilt_android_testing) // Automated test
+    kapt(Libs.hilt_android_compiler)
+    testImplementation(Libs.hilt_android_testing)
+    kaptTest(Libs.hilt_android_testing)
+    kaptAndroidTest(Libs.hilt_android_compiler)
 
     // Android JetpackCompose
-    implementation(Libs.composeUi)
+    implementation(Libs.ui)
     // Tooling support (Previews, etc.)
-    debugImplementation(Libs.composeUiTooling)
-    implementation(Libs.composeUiToolingPreview)
+    debugImplementation(Libs.ui_tooling_preview)
+    implementation(Libs.ui_tooling_preview)
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation(Libs.composeFoundation)
+    implementation(Libs.foundation)
     // Material Design
-    implementation(Libs.composeMaterial)
+    implementation(Libs.androidx_compose_material_material)
     // Material design icons
-    implementation(Libs.composeMaterialIcons)
-    implementation(Libs.composeMaterialIconsExtended)
+    implementation(Libs.material_icons_core)
+    implementation(Libs.material_icons_extended)
     // Integration with activities
-    implementation(Libs.composeActivities)
+    implementation(Libs.activity_compose)
     // Integration with ViewModels
-    implementation(Libs.lifecycleViewModelCompose)
+    implementation(Libs.lifecycle_viewmodel_compose)
     // Integration with observables
-    implementation(Libs.composeLivedata)
+    implementation(Libs.runtime_livedata)
 
-    implementation(Libs.composeCompile)
-    androidTestImplementation(Libs.composeUiTestJunit)
+    implementation(Libs.androidx_compose_compiler_compiler)
 }

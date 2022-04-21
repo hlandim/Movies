@@ -39,12 +39,8 @@
         <entry key="../../../../layout/compose-model-1648545949846.xml" value="0.3171452702702703" />
         <entry key="../../../../layout/compose-model-1649684568197.xml" value="0.1" />
         <entry key="../../../../layout/compose-model-1649684608084.xml" value="0.1" />
-        <entry key="../../../../layout/compose-model-1650031510455.xml" value="0.1" />
-        <entry key="../../../../layout/compose-model-1650373548701.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1923899102180419" />
         <entry key="app/src/main/res/layout/fragment_movies_list.xml" value="0.42441860465116277" />
-        <entry key="features/movies-list/src/main/res/layout/activity_movie_list.xml" value="0.12327622231508567" />
-        <entry key="features/movies-list/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.193" />
       </map>
     </option>
   </component>
