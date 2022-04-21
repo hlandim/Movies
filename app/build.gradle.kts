@@ -52,7 +52,6 @@ dependencies {
     implementation(Libs.foundation)
 
     //Modules
-    implementation(project(Module.central))
     implementation(project(Module.featMoviesList))
 
 
