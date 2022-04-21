@@ -48,6 +48,7 @@ dependencies {
     implementation(Libs.appcompat)
     implementation(Libs.com_google_android_material_material)
 
+    implementation(project(Module.commonData))
     implementation(project(Module.commonUi))
     implementation(project(Module.central))
 

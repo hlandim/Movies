@@ -20,13 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hlandim.movies.central.data.response.MovieResponse
+import com.hlandim.movies.common.data.Movie
 import com.hlandim.movies.common.view.R
 import com.hlandim.movies.common.view.componet.util.Utils
 
 
 @Composable
-fun MovieCard(movie: MovieResponse, listener: (MovieResponse) -> Unit) {
+fun MovieCard(movie: Movie, listener: (Movie) -> Unit) {
     Card(
         elevation = 4.dp,
         modifier = Modifier

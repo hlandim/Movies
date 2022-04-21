@@ -1,13 +1,13 @@
 package com.hlandim.movies.common.view.componet.util
 
-import com.hlandim.movies.central.data.response.MovieResponse
+import com.hlandim.movies.common.data.Movie
 import java.util.Date
 import kotlin.random.Random
 
 object Utils {
     // Used by compose components to generate data used by the Preview tool
     fun createMovieMock(title: String) =
-        MovieResponse(
+        Movie(
             Random.nextInt(),
             title,
             "",

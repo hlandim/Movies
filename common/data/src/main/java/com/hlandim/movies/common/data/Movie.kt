@@ -1,11 +1,11 @@
-package com.hlandim.movies.central.data.response
+package com.hlandim.movies.common.data
 
 import com.google.gson.annotations.SerializedName
 import java.util.Calendar
 import java.util.Date
 import java.util.GregorianCalendar
 
-data class MovieResponse(
+data class Movie(
 
     val id: Int,
 

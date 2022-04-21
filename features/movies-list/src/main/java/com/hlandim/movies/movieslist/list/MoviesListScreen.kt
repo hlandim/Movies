@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.hlandim.movies.central.data.response.MovieResponse
+import com.hlandim.movies.common.data.Movie
 import com.hlandim.movies.common.view.componet.ErrorMsg
 import com.hlandim.movies.common.view.componet.LoadingMsg
 import com.hlandim.movies.common.view.componet.MessageText
@@ -26,7 +26,7 @@ import com.hlandim.movies.ui.MoviesAppTheme
 @Composable
 fun MoviesListScreen(
     moviesViewModel: MoviesViewModel,
-    onMovieSelectedListener: (MovieResponse) -> Unit
+    onMovieSelectedListener: (Movie) -> Unit
 ) {
     MoviesAppTheme {
         val loadingState by moviesViewModel.loading.observeAsState()
@@ -39,15 +39,14 @@ fun MoviesListScreen(
         }
         val errorMsg by moviesViewModel.errorMsg.observeAsState()
         ListErrorMsg(errorMsg, loadingState)
-
     }
 }
 
 @Composable
 fun InitList(
-    moviesList: List<MovieResponse>?,
+    moviesList: List<Movie>?,
     loadingState: Boolean?,
-    onMovieSelectedListener: (MovieResponse) -> Unit,
+    onMovieSelectedListener: (Movie) -> Unit,
     onListEnded: () -> Unit
 ) {
     loadingState?.let { isLoading ->

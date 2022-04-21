@@ -38,5 +38,6 @@ object Module {
     const val commonView = ":common:view"
     const val commonUi = ":common:ui"
     const val commonTestView = ":common:test-view"
+    const val commonData = ":common:data"
 }
 

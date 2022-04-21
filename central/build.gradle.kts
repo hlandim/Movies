@@ -49,6 +49,7 @@ android {
 
 dependencies {
 
+    implementation(project(Module.commonData))
     implementation(Libs.junit_junit)
     implementation(Libs.androidx_test_ext_junit)
 

@@ -1,10 +1,9 @@
 package com.hlandim.movies.central.data
 
-import com.hlandim.movies.central.data.RepositoryResult
-import com.hlandim.movies.central.data.response.MoviesListResponse
+import com.hlandim.movies.common.data.MoviesList
 
 interface Repository {
 
-    suspend fun getMovies(page: Int): RepositoryResult<MoviesListResponse>
+    suspend fun getMovies(page: Int): RepositoryResult<MoviesList>
 
 }

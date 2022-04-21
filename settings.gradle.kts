@@ -6,6 +6,8 @@ pluginManagement {
     }
     plugins {
         id("de.fayard.refreshVersions") version "0.40.1"
+        id("com.android.library") version "7.1.3"
+        id("org.jetbrains.kotlin.android") version "1.6.21"
     }
 }
 
@@ -34,4 +36,5 @@ include(
     ":common:view",
     ":common:ui",
     ":common:test-view",
+    ":common:data"
 )

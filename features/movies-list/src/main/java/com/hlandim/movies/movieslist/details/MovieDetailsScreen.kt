@@ -25,13 +25,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hlandim.movies.central.data.response.MovieResponse
+import com.hlandim.movies.common.data.Movie
 import com.hlandim.movies.common.view.componet.MovieImage
 import com.hlandim.movies.ui.MoviesAppTheme
 import com.hlandim.movies.common.view.R as ViewResources
 
 @Composable
-fun MovieDetailsScreen(movie: MovieResponse) {
+fun MovieDetailsScreen(movie: Movie) {
     MoviesAppTheme {
         Scaffold(
             content = { Init(movie) }
@@ -40,13 +40,13 @@ fun MovieDetailsScreen(movie: MovieResponse) {
 }
 
 @Composable
-fun Init(movie: MovieResponse) {
+fun Init(movie: Movie) {
     val movieState = remember { movie }
     MovieDetails(movieState)
 }
 
 @Composable
-fun MovieDetails(movieDetails: MovieResponse?) {
+fun MovieDetails(movieDetails: Movie?) {
     movieDetails?.let { movie ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

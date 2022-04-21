@@ -12,15 +12,15 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hlandim.movies.central.data.response.MovieResponse
+import com.hlandim.movies.common.data.Movie
 import com.hlandim.movies.common.view.R
 import com.hlandim.movies.common.view.componet.util.Utils
 
 
 @Composable
 fun MoviesList(
-    movies: List<MovieResponse>,
-    itemClickedListener: (MovieResponse) -> Unit,
+    movies: List<Movie>,
+    itemClickedListener: (Movie) -> Unit,
     onListEndedListener: () -> Unit
 ) {
     LazyColumn(

@@ -49,6 +49,7 @@ dependencies {
     implementation(project(Module.central))
     implementation(project(Module.commonView))
     implementation(project(Module.commonUi))
+    implementation(project(Module.commonData))
     androidTestImplementation(project(Module.commonTestView))
 
     implementation(Libs.core_ktx)
