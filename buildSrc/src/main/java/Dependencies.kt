@@ -14,20 +14,24 @@ object Versions {
     const val retrofit = "2.9.0"
     const val lifeCycle = "2.4.1"
     const val compose = "1.1.1"
-    const val composeCompile = "1.2.0-alpha06"
+    const val composeCompile = "1.2.0-alpha07"
     const val gson = "2.9.0"
     const val espresso = "3.4.0"
     const val junit = "4.13.2"
-    const val appcompat = "1.4.1"
+    const val support = "1.4.1"
     const val androidMaterial = "1.5.0"
     const val constraintLayout = "2.1.3"
     const val ktx = "1.7.0"
     const val mockito = "1.12.1"
+    const val testCore = "1.4.0"
 }
 
 object Libs {
-    const val ktxCore = "androidx.core:core-ktx:${Versions.ktx}"
-    const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    const val androidxKtx = "androidx.core:core-ktx:${Versions.ktx}"
+//    const val androidxCore = "androidx.core:core:core:${Versions.ktx}"
+    const val androidxTestCore = "androidx.test:core:${Versions.testCore}"
+    const val androidxTestRules = "androidx.test:rules:${Versions.testCore}"
+    const val appcompat = "androidx.appcompat:appcompat:${Versions.support}"
     const val androidMaterial = "com.google.android.material:material:${Versions.androidMaterial}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
@@ -41,8 +45,9 @@ object Libs {
 
     // Hilt
     const val hiltTest = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
-    const val hiltCompile = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltAndroidCompile = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompile = "com.google.dagger:hilt-compiler:${Versions.hilt}"
 
     // GSON
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
@@ -93,4 +98,8 @@ object Libs {
 
 object Module {
     const val central = ":central"
+    const val moviesList = ":features:movies-list"
+    const val commonView = ":common:view"
+    const val commonUi = ":common:ui"
+    const val commonTestView = ":common:test-view"
 }

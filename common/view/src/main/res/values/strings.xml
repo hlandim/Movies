@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Common View</string>
+    <string name="loading_msg">Fetching the movies…</string>
+    <string name="popularity_label">Popularity: %1s</string>
+    <string name="release_year_label">Release Year: %1s</string>
+    <string name="no_items_found">No %1s found</string>
+    <string name="movies">Movies</string>
+    <string name="series">Series</string>
+
+</resources>

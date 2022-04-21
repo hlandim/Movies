@@ -15,3 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "Movies"
 include ':app'
 include ':central'
+include ':features:movies-list'
+include ':common:view'
+include ':common:ui'
+include ':common:test-view'

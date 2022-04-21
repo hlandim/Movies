@@ -23,11 +23,6 @@ android {
             BuildConfigFields.apiBaseUrl,
             "\"" + BuildConfigValues.apiBaseUrlValue + "\""
         )
-        buildConfigField(
-            BuildConfigType.string,
-            BuildConfigFields.apiImgBaseUrl,
-            "\"" + BuildConfigValues.apiBaseImgUrlValue + "\""
-        )
     }
 
     buildTypes {
@@ -54,41 +49,26 @@ android {
 
 dependencies {
 
-    implementation(Libs.ktxCore)
-    implementation(Libs.appcompat)
-    implementation(Libs.androidMaterial)
-    testImplementation(Libs.junit)
-    androidTestImplementation(Libs.extJunit)
-    androidTestImplementation(Libs.espresso)
+    implementation(Libs.junit)
+    implementation(Libs.extJunit)
 
     // Hilt - DI
     implementation(Libs.hilt)
     androidTestImplementation(Libs.hiltTest) // Automated test
+    kapt(Libs.hiltAndroidCompile)
     kapt(Libs.hiltCompile)
     testImplementation(Libs.hiltTest)
-    kaptTest(Libs.hiltCompile)
-    kaptAndroidTest(Libs.hiltCompile)
-
-    // GSON
-    implementation(Libs.gson)
+    kaptTest(Libs.hiltAndroidCompile)
+    kaptAndroidTest(Libs.hiltAndroidCompile)
 
     // Retrofit
     implementation(Libs.retrofit)
     implementation(Libs.retrofitLogging)
     implementation(Libs.retrofitConverterGson)
 
-
     // Coroutines
-    implementation(Libs.coroutinesCore)
-    implementation(Libs.coroutinesAndroid)
-    testImplementation(Libs.coroutinesTest)
-
-    //Mockito
-    testImplementation(Libs.mockito)
-    //MockWebserver
-    testImplementation(Libs.mockWebServer)
-    // Needed for unit testing API
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-
+    api(Libs.coroutinesCore)
+    api(Libs.coroutinesAndroid)
+    testApi(Libs.coroutinesTest)
 
 }

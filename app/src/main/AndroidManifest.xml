@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movies">
         <activity
-            android:name=".MainActivity"
+            android:name=".movieslist.MoviesListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
