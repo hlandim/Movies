@@ -1,4 +1,4 @@
-package com.hlandim.movies.util
+package com.hlandim.movies.common.testview
 
 import android.app.Application
 import android.content.Context
