@@ -43,9 +43,6 @@ dependencies {
     implementation(Libs.hilt_android_testing)
     api(Libs.ui_test_junit4)
 
-//    api(Libs.androidxTestCore)
-//    api(Libs.rule)
-
     // Hilt - DI
     implementation(Libs.hilt_android)
     androidTestImplementation(Libs.hilt_android_testing) // Automated test
