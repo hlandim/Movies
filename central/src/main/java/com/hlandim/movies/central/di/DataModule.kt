@@ -1,4 +1,4 @@
-package com.hlandim.movies.central.di
+package com.hlandim.movies.movieslist.di
 
 import com.hlandim.movies.central.data.Repository
 import com.hlandim.movies.central.data.RepositoryImpl
