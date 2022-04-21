@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.hlandim.movies.R
-import com.hlandim.movies.model.Movie
+import com.hlandim.movies.central.data.response.MovieResponse
 import com.hlandim.movies.ui.MoviesAppTheme
 import com.hlandim.movies.ui.componet.ErrorMsg
 import com.hlandim.movies.ui.componet.LoadingMsg
@@ -24,7 +24,7 @@ import com.hlandim.movies.viewmodel.MoviesViewModel
 
 @ExperimentalFoundationApi
 @Composable
-fun MoviesListScreen(moviesViewModel: MoviesViewModel, onMovieSelectedListener: (Movie) -> Unit) {
+fun MoviesListScreen(moviesViewModel: MoviesViewModel, onMovieSelectedListener: (MovieResponse) -> Unit) {
     MoviesAppTheme {
         val loadingState by moviesViewModel.loading.observeAsState()
         Column {
@@ -43,9 +43,9 @@ fun MoviesListScreen(moviesViewModel: MoviesViewModel, onMovieSelectedListener: 
 @Composable
 @ExperimentalFoundationApi
 fun InitList(
-    moviesList: List<Movie>?,
+    moviesList: List<MovieResponse>?,
     loadingState: Boolean?,
-    onMovieSelectedListener: (Movie) -> Unit,
+    onMovieSelectedListener: (MovieResponse) -> Unit,
     onListEnded: () -> Unit
 ) {
     loadingState?.let { isLoading ->
