@@ -55,6 +55,8 @@ public object Libs {
 
     public const val androidx_test_ext_junit: String = "androidx.test.ext:junit:_"
 
+    public const val androidx_test_rules: String = "androidx.test:rules:_"
+
     public const val com_android_tools_build_gradle: String = "com.android.tools.build:gradle:_"
 
     public const val landscapist_glide: String = "com.github.skydoves:landscapist-glide:_"
