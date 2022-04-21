@@ -50,7 +50,6 @@ dependencies {
 
     implementation(project(Module.commonData))
     implementation(project(Module.commonUi))
-    implementation(project(Module.central))
 
     // Android JetpackCompose
     implementation(Libs.ui)
